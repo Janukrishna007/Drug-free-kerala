@@ -123,7 +123,7 @@ export const Header: React.FC<HeaderProps> = ({ onPledgeClick }) => {
 
       {/* Mobile Menu Drawer */}
       <div 
-        className={`fixed inset-y-0 right-0 w-full sm:w-[320px] bg-black transform transition-transform duration-300 ease-in-out z-50 ${
+        className={`fixed inset-y-0 right-0 w-full sm:w-[320px] bg-gradient-to-b from-black to-[#1a1a1a] transform transition-transform duration-300 ease-in-out z-50 ${
           mobileMenuOpen 
             ? "translate-x-0" 
             : "translate-x-full"
