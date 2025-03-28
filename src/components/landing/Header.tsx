@@ -67,7 +67,7 @@ export const Header: React.FC<HeaderProps> = ({ onPledgeClick }) => {
               className="h-8 object-contain"
             />
             <img
-              src="/images/mulearn.png"
+              src="/images/mulearn-white-logo.png"
               alt="MuLearn Logo"
               className="h-8 object-contain"
             />
