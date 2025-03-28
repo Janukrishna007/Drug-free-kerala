@@ -182,7 +182,7 @@ export const Footer = () => {
                 className="h-6 object-contain"
               />
               <img
-                src="/images/mulearn.png"
+                src="/images/mulearn-white-logo.png"
                 alt="MuLearn Logo"
                 className="h-6 object-contain"
               />
