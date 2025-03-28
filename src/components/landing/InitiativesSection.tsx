@@ -5,89 +5,176 @@ interface InitiativeCardProps {
   title: string;
   image: string;
   description: string;
-  onClick: () => void;
-  isActive: boolean;
   index: number;
 }
 
 const InitiativeCard: React.FC<InitiativeCardProps> = ({ 
   title, 
   image, 
-  description, 
-  onClick, 
-  isActive,
+  description,
   index 
 }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <motion.div
-      className={`relative w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)] overflow-hidden rounded-2xl cursor-pointer transition-all duration-300 ${isActive ? 'z-20' : 'z-10'}`}
-      onClick={onClick}
+      className="relative w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)] overflow-hidden rounded-2xl cursor-pointer transition-all duration-300"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.98 }}
       layout
+      onHoverStart={() => setIsHovered(true)}
+      onHoverEnd={() => setIsHovered(false)}
     >
       <div className="relative aspect-[3/5] w-full overflow-hidden rounded-2xl group">
         <motion.img
           src={image}
           alt={title}
-          className="absolute h-full w-full object-cover transition-all duration-500 group-hover:scale-110"
+          className="absolute h-full w-full object-cover transition-all duration-500"
+          animate={{
+            scale: isHovered ? 1.1 : 1
+          }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
         
         <motion.div 
-          className="absolute bottom-0 left-0 right-0 p-4 text-white"
-          initial={{ y: 20, opacity: 0.8 }}
-          whileHover={{ y: 0, opacity: 1 }}
-        >
-          <h3 className="text-xl font-bold mb-2">{title}</h3>
-          {isActive && (
-            <motion.p
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              className="text-sm font-light"
-            >
-              {description}
-            </motion.p>
-          )}
-        </motion.div>
+          className="absolute inset-0"
+          animate={{
+            background: isHovered 
+              ? "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0.1) 100%)" 
+              : "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.1) 60%, transparent 100%)"
+          }}
+          transition={{ duration: 0.4 }}
+        ></motion.div>
+        
+        <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+          <motion.h3 
+            className="text-xl font-bold mb-2"
+            animate={{
+              y: isHovered ? -8 : 0,
+              scale: isHovered ? 1.05 : 1
+            }}
+            transition={{ duration: 0.4 }}
+          >
+            {title}
+          </motion.h3>
+          
+          <AnimatePresence>
+            {isHovered && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: 'auto' }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ 
+                  duration: 0.4,
+                  opacity: { duration: 0.25 },
+                  height: { duration: 0.4 }
+                }}
+                className="overflow-hidden"
+              >
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3, delay: 0.1 }}
+                >
+                  {/* Animated separator line with glowing effect */}
+                  <motion.div 
+                    className="h-0.5 bg-gradient-to-r from-white/30 via-white/90 to-white/30 mb-3 rounded-full"
+                    initial={{ width: 0, x: -20 }}
+                    animate={{ width: 60, x: 0 }}
+                    transition={{ 
+                      duration: 0.5, 
+                      ease: "easeOut" 
+                    }}
+                  />
+                  
+                  {/* Animated description with word-by-word reveal */}
+                  <div 
+                    className="text-sm font-light leading-relaxed text-white/90 relative"
+                    style={{ 
+                      maxHeight: '180px',
+                      overflow: 'auto',
+                      scrollbarWidth: 'none',
+                      msOverflowStyle: 'none'
+                    }}
+                  >
+                    {description.split(' ').map((word, i) => (
+                      <motion.span
+                        key={i}
+                        className="inline-block mr-1"
+                        initial={{ 
+                          opacity: 0, 
+                          y: 10,
+                          filter: "blur(8px)",
+                          scale: 0.95
+                        }}
+                        animate={{ 
+                          opacity: 1, 
+                          y: 0,
+                          filter: "blur(0px)",
+                          scale: 1
+                        }}
+                        transition={{ 
+                          duration: 0.3, 
+                          delay: 0.15 + i * 0.02,
+                          ease: "easeOut" 
+                        }}
+                      >
+                        {word}{' '}
+                      </motion.span>
+                    ))}
+                    
+                    {/* Animated highlight effect */}
+                    <motion.div
+                      className="absolute -inset-1 bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none"
+                      initial={{ opacity: 0, x: -100 }}
+                      animate={{ 
+                        opacity: [0, 0.2, 0],
+                        x: 500
+                      }}
+                      transition={{ 
+                        duration: 2.5, 
+                        delay: 0.3,
+                        repeat: Infinity,
+                        repeatDelay: 5
+                      }}
+                    />
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </motion.div>
   );
 };
 
 export const InitiativesSection = () => {
-  const [activeCard, setActiveCard] = useState<number | null>(null);
-
   const initiatives = [
     {
-      title: "Educational Outreach",
-      image: "https://cdn.builder.io/api/v1/image/assets/TEMP/2c5c00dd34f7c1d7517203f7bbfdef01fc10b3e9?placeholderIfAbsent=true",
-      description: "Empowering students with knowledge about the harmful effects of drug use through interactive workshops, seminars, and awareness campaigns in educational institutions across Kerala."
+      title: "GTECH Initiative",
+      image: "images/GTech Initiative.jpeg",
+      description: "Empowering youth with technical and artistic skills provides a strong defense against drug abuse by fostering purpose and self-worth. Skill-building programs that enhance problem-solving and emotional regulation create resilience against negative influences. Through workshops and career- oriented camps, young minds stay engaged, responsible, and socially aware, reducing the likelihood of drug dependency."
     },
     {
-      title: "Community Support",
-      image: "https://cdn.builder.io/api/v1/image/assets/TEMP/6703e9897cae4545820310c498f68350cf6c5957?placeholderIfAbsent=true",
-      description: "Building a network of support for individuals and families affected by drug addiction, offering counseling services, rehabilitation programs, and reintegration assistance."
+      title: "Mulearn Movement",
+      image: "images/MuLearn movement.png",
+      description: "Harnessing peer influence, we promote drug prevention through leadership programs like the Near Peer Buddy System, encouraging students to support one another.Student-led campaigns, role model initiatives, and peer counseling empower youth. By involving them in school governance, social clubs, and leadership roles, we foster accountability and responsibility, guiding them toward a drug-free lifestyle."
     },
     {
       title: "Social Engagement",
-      image: "https://cdn.builder.io/api/v1/image/assets/TEMP/2c5c00dd34f7c1d7517203f7bbfdef01fc10b3e9?placeholderIfAbsent=true",
-      description: "Creating platforms for youth to engage in productive and meaningful activities, diverting their attention away from drugs and fostering a sense of purpose and community."
+      image: "images/Social Engagement.jpeg",
+      description: "Online platforms and social media help combat substance abuse. Instagram, Facebook, and YouTube share impactful stories, videos, and awareness challenges. Games, comics, and virtual communities engage younger audiences. This dedicated website offers drug prevention resources, anonymous reporting, and virtual counseling, ensuring easy access to anti-drug support."
     },
     {
-      title: "Digital Advocacy",
-      image: "https://cdn.builder.io/api/v1/image/assets/TEMP/ca5390300001c223043589766a1fa07a49f79c7d?placeholderIfAbsent=true",
-      description: "Leveraging technology and digital platforms to spread awareness about drug abuse, provide information resources, and create innovative solutions to combat the drug menace."
+      title: "Community Engagement",
+      image: "images/community management.jpeg",
+      description: "A strong community is key to fighting substance abuse. We're building a network of NGOs, law enforcement, schools, and local groups for a safer environment.Parent support groups, neighborhood watch programs, and awareness drives foster collective responsibility, while social clubs, religious institutions, and public figures help spread awareness."
     }
   ];
-
-  const handleCardClick = (index: number) => {
-    setActiveCard(activeCard === index ? null : index);
-  };
 
   return (
     <section id="initiatives" className="bg-white w-full py-16 md:py-20">
@@ -123,8 +210,6 @@ export const InitiativesSection = () => {
               title={initiative.title}
               image={initiative.image}
               description={initiative.description}
-              onClick={() => handleCardClick(index)}
-              isActive={activeCard === index}
               index={index}
             />
           ))}
