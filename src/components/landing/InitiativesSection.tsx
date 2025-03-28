@@ -156,7 +156,7 @@ export const InitiativesSection = () => {
   const initiatives = [
     {
       title: "GTECH Initiative",
-      image: "images/GTech Initiative.jpeg",
+      image: "images/GTech Initiative.png",
       description: "Empowering youth with technical and artistic skills provides a strong defense against drug abuse by fostering purpose and self-worth. Skill-building programs that enhance problem-solving and emotional regulation create resilience against negative influences. Through workshops and career- oriented camps, young minds stay engaged, responsible, and socially aware, reducing the likelihood of drug dependency."
     },
     {
@@ -166,12 +166,12 @@ export const InitiativesSection = () => {
     },
     {
       title: "Social Engagement",
-      image: "images/Social Engagement.jpeg",
+      image: "images/Social Engagement.png",
       description: "Online platforms and social media help combat substance abuse. Instagram, Facebook, and YouTube share impactful stories, videos, and awareness challenges. Games, comics, and virtual communities engage younger audiences. This dedicated website offers drug prevention resources, anonymous reporting, and virtual counseling, ensuring easy access to anti-drug support."
     },
     {
       title: "Community Engagement",
-      image: "images/community management.jpeg",
+      image: "images/community management.png",
       description: "A strong community is key to fighting substance abuse. We're building a network of NGOs, law enforcement, schools, and local groups for a safer environment.Parent support groups, neighborhood watch programs, and awareness drives foster collective responsibility, while social clubs, religious institutions, and public figures help spread awareness."
     }
   ];
