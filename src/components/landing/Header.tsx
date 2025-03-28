@@ -122,33 +122,52 @@ export const Header: React.FC<HeaderProps> = ({ onPledgeClick }) => {
 
       {/* Mobile Menu Drawer */}
       <div 
-        className={`fixed inset-y-0 right-0 w-full sm:w-[320px] bg-black/95 transform transition-transform duration-300 ease-in-out z-50 ${
+        className={`fixed inset-y-0 right-0 w-full sm:w-[320px] bg-black transform transition-transform duration-300 ease-in-out z-50 ${
           mobileMenuOpen 
             ? "translate-x-0" 
             : "translate-x-full"
         }`}
       >
         <div className="h-full px-6 py-20">
-          <nav className="flex flex-col space-y-6">
-            {navigationItems.map((item) => (
-              <a 
-                key={item.label} 
-                href={item.href}
-                className="text-white text-lg py-2 hover:text-[rgba(92,183,105,1)] transition-colors duration-200 w-full"
-                onClick={() => setMobileMenuOpen(false)}
+          <nav className="flex flex-col h-full">
+            <div className="space-y-6">
+              {navigationItems.map((item) => (
+                <a 
+                  key={item.label} 
+                  href={item.href}
+                  className="text-white text-lg py-2 hover:text-[rgba(92,183,105,1)] transition-colors duration-200 w-full block"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ))}
+              <Button 
+                className="bg-[rgba(92,183,105,1)] hover:bg-[rgba(72,163,85,1)] text-white mt-4 w-full transition-colors duration-200 py-6"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  if (onPledgeClick) onPledgeClick();
+                }}
               >
-                {item.label}
-              </a>
-            ))}
-            <Button 
-              className="bg-[rgba(92,183,105,1)] hover:bg-[rgba(72,163,85,1)] text-white mt-4 w-full transition-colors duration-200 py-6"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                if (onPledgeClick) onPledgeClick();
-              }}
-            >
-              Take the Pledge
-            </Button>
+                Take the Pledge
+              </Button>
+            </div>
+
+            {/* Partner Logos */}
+            <div className="mt-auto pt-8 border-t border-white/20">
+              <p className="text-white/80 text-sm mb-4">In Association With</p>
+              <div className="flex items-center gap-4">
+                <img
+                  src="/images/gtech.png"
+                  alt="GTech Logo"
+                  className="h-8 object-contain"
+                />
+                <img
+                  src="/images/mulearn.png"
+                  alt="MuLearn Logo"
+                  className="h-8 object-contain"
+                />
+              </div>
+            </div>
           </nav>
         </div>
       </div>
