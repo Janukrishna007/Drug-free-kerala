@@ -6,7 +6,7 @@ export const Footer = () => {
     <footer id="contact" className="bg-black w-full overflow-hidden mt-20 pt-12 pb-8 rounded-t-[50px] md:rounded-t-[80px]">
       <div className="container mx-auto px-5 md:px-8">
         {/* Logo Row */}
-        <div className="flex justify-center mb-10">
+        <div className="flex justify-start mb-10">
           <img
             src="/images/drugfreekerala.png"
             alt="Drug Free Kerala Logo"
