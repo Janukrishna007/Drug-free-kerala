@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import { Facebook, Twitter, Instagram, Linkedin, Phone, Mail, MapPin, Copyright } from "lucide-react";
 
-export const Footer = () => {
+export const Footer = ({ onPledgeClick }: { onPledgeClick: () => void }) => {
   return (
     <footer id="contact" className="bg-black w-full overflow-hidden mt-20 pt-12 pb-8 rounded-t-[50px] md:rounded-t-[80px]">
       <div className="container mx-auto px-10 md:px-8">
@@ -71,14 +71,12 @@ export const Footer = () => {
               <li className="hover:text-[rgba(92,183,105,1)] transition-colors">
                 <a href="#journey" className="inline-block hover:underline">Journey</a>
               </li>
-              <li className="hover:text-[rgba(92,183,105,1)] transition-colors">
-                <a href="#contact" className="inline-block hover:underline">Contact</a>
-              </li>
+   
               <li className="hover:text-[rgba(92,183,105,1)] transition-colors ">
                 <Button 
                   variant="link" 
                   className="p-0 h-auto text-[rgba(242,242,242,1)] hover:text-[rgba(92,183,105,1)] hover:underline inline-block"
-                  onClick={() => window.location.href = '#pledge'}
+                  onClick={onPledgeClick}
                 >
                   Take the Pledge
                 </Button>
