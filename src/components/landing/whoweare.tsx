@@ -5,8 +5,9 @@ const WhoWeAreSection: React.FC = () => {
   return (
     <section className="flex overflow-hidden flex-col items-center px-20 pt-4 pb-20 mt-8 w-full bg-zinc-100 max-md:px-5 max-md:max-w-full">
       <div className="flex flex-col w-full max-w-[1226px] max-md:max-w-full">
+      Who
         <h2 className="self-center text-4xl font-bold text-black">
-          Who We Are
+           We Are
         </h2>
         <div className="flex flex-wrap gap-5 justify-center mt-14 max-md:mt-10 max-md:max-w-full">
           <div className="w-[570px] h-[240px] p-14 bg-white rounded-[30px] relative overflow-hidden shadow-sm group transition-all duration-300 hover:shadow-md">

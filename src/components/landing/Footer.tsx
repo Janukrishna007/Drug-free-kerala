@@ -8,7 +8,7 @@ export const Footer = () => {
         {/* Logo Row */}
         <div className="flex justify-start mb-10">
           <img
-            src="/images/drugfreekerala.png"
+            src="/images/dugfreekeralwhite.png"
             alt="Drug Free Kerala Logo"
             className="h-16 object-contain"
           />
@@ -17,7 +17,6 @@ export const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10">
           {/* Left Column - About */}
           <div className="md:col-span-4 flex flex-col">
-            <h3 className="text-[#F2F2F2] font-medium text-base mb-4">About the Movement</h3>
             <p className="text-[rgba(242,242,242,1)] text-base font-light leading-6 mb-6">
               Empowering youth through innovation, creativity,
               and purpose-driven engagement to create a drug-free society across Kerala.
