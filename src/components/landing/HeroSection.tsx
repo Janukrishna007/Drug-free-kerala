@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { CertificateLookup } from "./CertificateLookup";
+import CountUp from 'react-countup';
+
 
 interface HeroSectionProps {
   onPledgeClick?: () => void;
@@ -8,6 +11,44 @@ interface HeroSectionProps {
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ onPledgeClick }) => {
   const [showCertificateLookup, setShowCertificateLookup] = useState(false);
+  const [pledgeCount, setPledgeCount] = useState<number>(0);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchPledgeCount = async () => {
+      try {
+        setIsLoading(true);
+        const response = await fetch('https://mulearn.org/api/v1/drugfreekerala/total/', {
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+          }
+        });
+        
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log('Raw API response:', data);
+  
+        
+        // Check the exact path to count in the response
+        setPledgeCount(data.total || 0);
+        
+      } catch (error) {
+        console.error('API Error:', error);
+        setPledgeCount(0);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchPledgeCount();
+    // Poll every 30 seconds
+    const interval = setInterval(fetchPledgeCount, 30000);
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <>
@@ -21,7 +62,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onPledgeClick }) => {
           <div className="flex flex-col items-center w-full max-w-5xl mx-auto">
             <div className="flex flex-col md:flex-row items-center w-full gap-10 mt-10 mb-10">
               <div className="flex flex-col items-center text-white">
-                <div className="text-9xl md:text-8xl font-semibold">78+</div>
+                <div className="text-9xl md:text-8xl font-semibold">
+                  <CountUp
+                    start={0}
+                    end={pledgeCount}
+                    duration={2.5}
+                    />
+                </div>
                 <div className="text-3xl md:text-5xl font-medium mt-4">Pledges</div>
               </div>
               <div className="text-[rgba(244,244,244,1)] text-3xl md:text-5xl font-bold leading-tight text-centre md:text-left max-w-xl">
@@ -44,13 +91,6 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onPledgeClick }) => {
               vibrant communities.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
-              {/* <Button
-                variant="outline"
-                className="w-full sm:w-auto min-w-[200px] md:min-w-[230px] h-12 md:h-14 text-sm font-medium bg-white text-black hover:bg-gray-100 hover:text-black"
-                onClick={() => setShowCertificateLookup(true)}
-              >
-                Look up your certificate
-              </Button> */}
               <Button 
                 className="w-full sm:w-auto min-w-[200px] md:min-w-[230px] h-12 md:h-14 text-sm font-medium bg-[rgba(92,183,105,1)] hover:bg-[rgba(82,163,95,1)]"
                 onClick={onPledgeClick}
@@ -58,11 +98,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onPledgeClick }) => {
                 Take the Pledge
               </Button>
             </div>
-            <div className="mt-6">
-              {/* <a href="/certificate/demo-certificate" className="text-white hover:text-[rgba(92,183,105,1)] underline text-sm transition-colors">
-                View Demo Certificate
-              </a> */}
-            </div>
+            <div className="mt-6"></div>
           </div>
         </div>
       </section>
