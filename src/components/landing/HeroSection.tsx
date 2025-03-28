@@ -19,13 +19,12 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onPledgeClick }) => {
         />
         <div className="container mx-auto relative py-20">
           <div className="flex flex-col items-center w-full max-w-5xl mx-auto">
-            <div className="flex flex-col md:flex-row items-center justify-between w-full gap-10 mb-10">
-              <div className="flex flex-col items-center text-white mb-8 md:mb-0">
-                <div className="text-4xl md:text-6xl font-semibold">78+</div>
+            <div className="flex flex-col md:flex-row items-center w-full gap-10 mt-10 mb-10">
+              <div className="flex flex-col items-center text-white">
+                <div className="text-9xl md:text-8xl font-semibold">78+</div>
                 <div className="text-3xl md:text-5xl font-medium mt-4">Pledges</div>
               </div>
-              <div className="hidden md:block h-24 w-px bg-white/30 self-stretch mx-4"></div>
-              <div className="text-[rgba(244,244,244,1)] text-3xl md:text-5xl font-bold leading-tight text-center md:text-left max-w-xl">
+              <div className="text-[rgba(244,244,244,1)] text-3xl md:text-5xl font-bold leading-tight text-centre md:text-left max-w-xl">
                 United{" "}
                 <span className="text-[rgba(92,183,105,1)]">
                   against addiction
