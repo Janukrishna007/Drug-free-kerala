@@ -70,21 +70,21 @@ export const Footer = () => {
             </h3>
             <ul className="text-[rgba(242,242,242,1)] font-normal space-y-3">
               <li className="hover:text-[rgba(92,183,105,1)] transition-colors">
-                <a href="#about" className="inline-block">About</a>
+                <a href="#about" className="inline-block hover:underline">About</a>
               </li>
               <li className="hover:text-[rgba(92,183,105,1)] transition-colors">
-                <a href="#initiatives" className="inline-block">Initiatives</a>
+                <a href="#initiatives" className="inline-block hover:underline">Initiatives</a>
               </li>
               <li className="hover:text-[rgba(92,183,105,1)] transition-colors">
-                <a href="#journey" className="inline-block">Journey</a>
+                <a href="#journey" className="inline-block hover:underline">Journey</a>
               </li>
               <li className="hover:text-[rgba(92,183,105,1)] transition-colors">
-                <a href="#contact" className="inline-block">Contact</a>
+                <a href="#contact" className="inline-block hover:underline">Contact</a>
               </li>
-              <li className="hover:text-[rgba(92,183,105,1)] transition-colors">
+              <li className="hover:text-[rgba(92,183,105,1)] transition-colors ">
                 <Button 
                   variant="link" 
-                  className="p-0 h-auto text-[rgba(242,242,242,1)] hover:text-[rgba(92,183,105,1)]"
+                  className="p-0 h-auto text-[rgba(242,242,242,1)] hover:text-[rgba(92,183,105,1)] hover:underline inline-block"
                   onClick={() => window.location.href = '#pledge'}
                 >
                   Take the Pledge
@@ -182,7 +182,7 @@ export const Footer = () => {
                 className="h-6 object-contain"
               />
               <img
-                src="/images/mulearn.png"
+                src="/images/mulearn-white-logo.png"
                 alt="MuLearn Logo"
                 className="h-6 object-contain"
               />
