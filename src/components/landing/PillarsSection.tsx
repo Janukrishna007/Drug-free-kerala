@@ -22,8 +22,8 @@ export const PillarsSection = () => {
           transition={{ duration: 0.7 }}
           viewport={{ once: true }}
         >
-          <h2 className="text-[#1E1E1E] text-3xl md:text-4xl font-bold mb-4">
-            Our <span className="font-medium">Three Pillars</span>
+          <h2 className="text-[#1E1E1E] text-3xl md:text-4xl font-medium mb-4">
+            Our <span className="font-bold">Three Pillars</span>
           </h2>
           <p className="text-[#1E1E1E] text-base font-medium max-w-3xl mx-auto">
             A comprehensive approach to creating drug-free environments through
