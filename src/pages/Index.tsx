@@ -7,7 +7,7 @@ import { InitiativesSection } from "@/components/landing/InitiativesSection";
 import { JourneySection } from "@/components/landing/JourneySection";
 import { Footer } from "@/components/landing/Footer";
 import { PledgeForm } from "@/components/landing/PledgeForm";
-
+import WhoWeAreSection from "@/components/landing/whoweare";
 const Index = () => {
   const [showPledgeForm, setShowPledgeForm] = useState(false);
 
@@ -20,6 +20,7 @@ const Index = () => {
       <Header onPledgeClick={handlePledgeClick} />
       <HeroSection onPledgeClick={handlePledgeClick} />
       <AboutSection />
+      <WhoWeAreSection />
       <PillarsSection />
       <InitiativesSection />
       <JourneySection />
