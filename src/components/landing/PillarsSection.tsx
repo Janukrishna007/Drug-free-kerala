@@ -58,15 +58,6 @@ export const PillarsSection = () => {
             />
             
             <motion.div 
-              className="w-16 text-[#1E1E1E] font-medium text-center"
-              initial={{ opacity: 0, scale: 0.5 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3, delay: 0.2 }}
-            >
-              01
-            </motion.div>
-            
-            <motion.div 
               className="flex items-center justify-center w-16 h-16 bg-white rounded-full mx-4 shadow-sm"
               whileHover={{ scale: 1.1, boxShadow: "0 8px 15px rgba(0,0,0,0.1)" }}
               animate={{ 
@@ -100,7 +91,7 @@ export const PillarsSection = () => {
             </motion.div>
             
             <div className="flex-1">
-              <div className="flex items-center flex-col md:flex-row gap-4 space-between justify-between">
+              <div className="flex items-center flex-col md:flex-row gap-4 space-around justify-between">
                 <motion.h3 
                   className="text-[#1E1E1E] text-2xl md:text-3xl font-bold"
                   variants={textVariants}
@@ -111,7 +102,7 @@ export const PillarsSection = () => {
                   Alert
                 </motion.h3>
                 <motion.p 
-                  className="text-[#1E1E1E] text-base md:text-lg font-medium max-w-md mr-8"
+                  className="text-[#1E1E1E] text-base md:text-lg font-medium max-w-md text-left mr-8"
                   variants={textVariants}
                   initial="hidden"
                   whileInView="visible"
@@ -123,6 +114,7 @@ export const PillarsSection = () => {
             </div>
           </motion.div>
 
+        <div className="space-y-6 max-w-4xl mx-auto">
           {/* Pillar 2: Awareness */}
           <motion.div 
             className="bg-[rgba(219,243,223,1)] rounded-lg p-6 flex flex-row items-center hover:shadow-xl transition-all relative overflow-hidden"
@@ -148,15 +140,6 @@ export const PillarsSection = () => {
               whileHover={{ opacity: 0.3, x: 400 }}
               transition={{ duration: 1.5, repeat: Infinity, repeatType: "mirror" }}
             />
-            
-            <motion.div 
-              className="w-16 text-[#1E1E1E] font-medium text-center"
-              initial={{ opacity: 0, scale: 0.5 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3, delay: 0.4 }}
-            >
-              02
-            </motion.div>
             
             <motion.div 
               className="flex items-center justify-center w-16 h-16 bg-white rounded-full mx-4 shadow-sm"
@@ -195,7 +178,7 @@ export const PillarsSection = () => {
             </motion.div>
             
             <div className="flex-1">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center flex-col md:flex-row gap-4 space-around justify-between">
                 <motion.h3 
                   className="text-[#1E1E1E] text-2xl md:text-3xl font-bold"
                   variants={textVariants}
@@ -206,7 +189,8 @@ export const PillarsSection = () => {
                   Awareness
                 </motion.h3>
                 <motion.p 
-                  className="text-[#1E1E1E] text-base md:text-lg font-medium max-w-md"
+                  className="text-[#1E1E1E] text-base md:text-lg font-medium 
+                   text-left max-w-md"
                   variants={textVariants}
                   initial="hidden"
                   whileInView="visible"
@@ -217,6 +201,7 @@ export const PillarsSection = () => {
               </div>
             </div>
           </motion.div>
+        </div>
 
           {/* Pillar 3: Action */}
           <motion.div 
@@ -243,15 +228,6 @@ export const PillarsSection = () => {
               whileHover={{ opacity: 0.3, x: 400 }}
               transition={{ duration: 1.5, repeat: Infinity, repeatType: "mirror" }}
             />
-            
-            <motion.div 
-              className="w-16 text-[#1E1E1E] font-medium text-center"
-              initial={{ opacity: 0, scale: 0.5 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.3, delay: 0.6 }}
-            >
-              03
-            </motion.div>
             
             <motion.div 
               className="flex items-center justify-center w-16 h-16 bg-white rounded-full mx-4 shadow-sm"
@@ -286,7 +262,7 @@ export const PillarsSection = () => {
             </motion.div>
             
             <div className="flex-1">
-              <div className="flex items-center justify-between">
+              <div className="flex items-center flex-col md:flex-row gap-4 space-around justify-between">
                 <motion.h3 
                   className="text-[#1E1E1E] text-2xl md:text-3xl font-bold"
                   variants={textVariants}
