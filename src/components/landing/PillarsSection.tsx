@@ -108,7 +108,7 @@ export const PillarsSection = () => {
                   whileInView="visible"
                   transition={{ delay: 0.3 }}
                 >
-                  Mechanism to alert on substance abuse
+                  Mechanism to alert on substance abuse and prevention measures.
                 </motion.p>
               </div>
             </div>
