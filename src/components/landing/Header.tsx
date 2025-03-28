@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { NavigationMenu, NavigationMenuList, NavigationMenuItem, NavigationMenuLink } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
@@ -19,7 +19,18 @@ interface HeaderProps {
 
 export const Header: React.FC<HeaderProps> = ({ onPledgeClick }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      setIsScrolled(scrollPosition > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -35,7 +46,9 @@ export const Header: React.FC<HeaderProps> = ({ onPledgeClick }) => {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-black/60 backdrop-blur-md">
+    <header className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+      isScrolled ? 'bg-gradient-to-b from-black/80 to-black/20 backdrop-blur-sm' : 'p-5'
+    }`}>
       <div ref={menuRef} className="container mx-auto px-4 py-4 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <a href="/">
@@ -60,7 +73,7 @@ export const Header: React.FC<HeaderProps> = ({ onPledgeClick }) => {
           </div>
         </div>
 
-        {/* Desktop Navigation */}
+        {/* Desktop Navigation
         <NavigationMenu className="hidden md:flex">
           <NavigationMenuList className="flex gap-6">
             {navigationItems.map((item) => (
@@ -76,10 +89,10 @@ export const Header: React.FC<HeaderProps> = ({ onPledgeClick }) => {
               </NavigationMenuItem>
             ))}
           </NavigationMenuList>
-        </NavigationMenu>
+        </NavigationMenu> */}
 
         {/* Take the Pledge Button */}
-        <div className="hidden md:block">
+        <div className="hidden">
           <Button 
             className="bg-[rgba(92,183,105,1)] hover:bg-[rgba(72,163,85,1)] text-white"
             onClick={onPledgeClick}
@@ -90,39 +103,74 @@ export const Header: React.FC<HeaderProps> = ({ onPledgeClick }) => {
 
         {/* Mobile Menu Button */}
         <button 
-          className="md:hidden text-white p-2" 
+          className="text-white p-2" 
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           <Menu className="h-6 w-6" />
         </button>
       </div>
 
-      {/* Mobile Menu */}
-      {mobileMenuOpen && (
-        <div className="md:hidden bg-black/90 px-4 py-4">
-          <nav className="flex flex-col space-y-4">
-            {navigationItems.map((item) => (
-              <a 
-                key={item.label} 
-                href={item.href}
-                className="text-white py-2 hover:text-[rgba(92,183,105,1)]"
-                onClick={() => setMobileMenuOpen(false)}
+      {/* Mobile Menu Overlay */}
+      <div 
+        className={`fixed inset-0 bg-black/50 transition-opacity duration-300 z-40 ${
+          mobileMenuOpen 
+            ? "opacity-100" 
+            : "opacity-0 pointer-events-none"
+        }`}
+        onClick={() => setMobileMenuOpen(false)}
+      />
+
+      {/* Mobile Menu Drawer */}
+      <div 
+        className={`fixed inset-y-0 right-0 w-full sm:w-[320px] bg-black transform transition-transform duration-300 ease-in-out z-50 ${
+          mobileMenuOpen 
+            ? "translate-x-0" 
+            : "translate-x-full"
+        }`}
+      >
+        <div className="h-full px-6 py-20">
+          <nav className="flex flex-col h-full">
+            <div className="space-y-6">
+              {navigationItems.map((item) => (
+                <a 
+                  key={item.label} 
+                  href={item.href}
+                  className="text-white text-lg py-2 hover:text-[rgba(92,183,105,1)] transition-colors duration-200 w-full block"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </a>
+              ))}
+              <Button 
+                className="bg-[rgba(92,183,105,1)] hover:bg-[rgba(72,163,85,1)] text-white mt-4 w-full transition-colors duration-200 py-6"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  if (onPledgeClick) onPledgeClick();
+                }}
               >
-                {item.label}
-              </a>
-            ))}
-            <Button 
-              className="bg-[rgba(92,183,105,1)] hover:bg-[rgba(72,163,85,1)] text-white mt-2 w-full"
-              onClick={() => {
-                setMobileMenuOpen(false);
-                if (onPledgeClick) onPledgeClick();
-              }}
-            >
-              Take the Pledge
-            </Button>
+                Take the Pledge
+              </Button>
+            </div>
+
+            {/* Partner Logos */}
+            <div className="mt-auto pt-8 border-t border-white/20">
+              <p className="text-white/80 text-sm mb-4">In Association With</p>
+              <div className="flex items-center gap-4">
+                <img
+                  src="/images/gtech.png"
+                  alt="GTech Logo"
+                  className="h-8 object-contain"
+                />
+                <img
+                  src="/images/mulearn.png"
+                  alt="MuLearn Logo"
+                  className="h-8 object-contain"
+                />
+              </div>
+            </div>
           </nav>
         </div>
-      )}
+      </div>
     </header>
   );
 };
