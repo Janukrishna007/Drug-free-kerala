@@ -20,9 +20,7 @@ const WhoWeAreSection: React.FC = () => {
           
           <div className="w-[570px] h-[240px] p-14 bg-white rounded-[30px] relative overflow-hidden shadow-sm group transition-all duration-300 hover:shadow-md">
             <p className="text-base text-center">
-              We are committed to raising awareness against 
-              drug abuse through education, media 
-              campaigns, and active community participation.
+            Our initiative involves sensitization programs for students, parents, and teachers, along with peer mentoring, community engagement, and rehabilitation support. 
             </p>
             <div className="absolute bottom-0 left-0 w-20 h-20 bg-green-400 rounded-tr-full transition-transform duration-500 ease-out group-hover:scale-[1.75]"></div>
           </div>
