@@ -43,19 +43,16 @@ const InitiativeCard: React.FC<InitiativeCardProps> = ({
           whileHover={{ y: 0, opacity: 1 }}
         >
           <h3 className="text-xl font-bold mb-2">{title}</h3>
-          <AnimatePresence>
-            {isActive && (
-              <motion.p
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: 'auto' }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.3 }}
-                className="text-sm font-light"
-              >
-                {description}
-              </motion.p>
-            )}
-          </AnimatePresence>
+          {isActive && (
+            <motion.p
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="text-sm font-light"
+            >
+              {description}
+            </motion.p>
+          )}
         </motion.div>
       </div>
     </motion.div>
@@ -67,24 +64,24 @@ export const InitiativesSection = () => {
 
   const initiatives = [
     {
-      title: "GTech Initiative",
+      title: "Educational Outreach",
       image: "https://cdn.builder.io/api/v1/image/assets/TEMP/2c5c00dd34f7c1d7517203f7bbfdef01fc10b3e9?placeholderIfAbsent=true",
-      description: "Leading the charge in creating a drug-free Kerala through technology-driven solutions, community engagement, and innovative awareness campaigns. GTech's initiative focuses on leveraging digital platforms to reach and educate the youth."
+      description: "Empowering students with knowledge about the harmful effects of drug use through interactive workshops, seminars, and awareness campaigns in educational institutions across Kerala."
     },
     {
-      title: "MuLearn Movement",
+      title: "Community Support",
       image: "https://cdn.builder.io/api/v1/image/assets/TEMP/6703e9897cae4545820310c498f68350cf6c5957?placeholderIfAbsent=true",
-      description: "Empowering students through peer-to-peer learning and mentorship programs. The MuLearn movement creates a supportive environment where students can share experiences, learn from each other, and build resilience against drug abuse."
+      description: "Building a network of support for individuals and families affected by drug addiction, offering counseling services, rehabilitation programs, and reintegration assistance."
     },
     {
-      title: "Company Initiative",
+      title: "Social Engagement",
       image: "https://cdn.builder.io/api/v1/image/assets/TEMP/2c5c00dd34f7c1d7517203f7bbfdef01fc10b3e9?placeholderIfAbsent=true",
-      description: "Corporate sector's commitment to creating a drug-free workplace and community. Through employee engagement programs, awareness campaigns, and support systems, companies are actively contributing to the movement."
+      description: "Creating platforms for youth to engage in productive and meaningful activities, diverting their attention away from drugs and fostering a sense of purpose and community."
     },
     {
-      title: "Campus Initiative",
+      title: "Digital Advocacy",
       image: "https://cdn.builder.io/api/v1/image/assets/TEMP/ca5390300001c223043589766a1fa07a49f79c7d?placeholderIfAbsent=true",
-      description: "Transforming educational institutions into hubs of drug-free culture. The campus initiative focuses on creating awareness, providing counseling services, and organizing engaging activities to keep students away from drugs."
+      description: "Leveraging technology and digital platforms to spread awareness about drug abuse, provide information resources, and create innovative solutions to combat the drug menace."
     }
   ];
 
