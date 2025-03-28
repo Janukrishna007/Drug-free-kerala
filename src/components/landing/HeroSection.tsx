@@ -44,13 +44,13 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onPledgeClick }) => {
               vibrant communities.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-12">
-              <Button
+              {/* <Button
                 variant="outline"
                 className="w-full sm:w-auto min-w-[200px] md:min-w-[230px] h-12 md:h-14 text-sm font-medium bg-white text-black hover:bg-gray-100 hover:text-black"
                 onClick={() => setShowCertificateLookup(true)}
               >
                 Look up your certificate
-              </Button>
+              </Button> */}
               <Button 
                 className="w-full sm:w-auto min-w-[200px] md:min-w-[230px] h-12 md:h-14 text-sm font-medium bg-[rgba(92,183,105,1)] hover:bg-[rgba(82,163,95,1)]"
                 onClick={onPledgeClick}

@@ -20,6 +20,7 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ onPledgeClick }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showCertificateLookup, setShowCertificateLookup] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -149,6 +150,13 @@ export const Header: React.FC<HeaderProps> = ({ onPledgeClick }) => {
                 }}
               >
                 Take the Pledge
+              </Button>
+              <Button
+                variant="outline"
+                className="w-full sm:w-auto min-w-[200px] md:min-w-[230px] h-12 md:h-14 text-sm font-medium bg-white text-black hover:bg-gray-100 hover:text-black"
+                onClick={() => setShowCertificateLookup(true)}
+              >
+                Look up your certificate
               </Button>
             </div>
 
