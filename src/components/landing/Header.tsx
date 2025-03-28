@@ -160,11 +160,8 @@ export const Header: React.FC<HeaderProps> = ({ onPledgeClick }) => {
               </Button>
             </div>
 
-<<<<<<< HEAD
-            
-=======
             {/* Partner Logos */}
-            {/* <div className="mt-auto pt-8 border-t border-white/20">
+            <div className="mt-auto pt-8 border-t border-white/20">
               <p className="text-white/80 text-sm mb-4">In Association With</p>
               <div className="flex items-center gap-4">
                 <img
@@ -178,8 +175,7 @@ export const Header: React.FC<HeaderProps> = ({ onPledgeClick }) => {
                   className="h-8 object-contain"
                 />
               </div>
-            </div> */}
->>>>>>> d644a76f392d5517f4ed92f947bec2c2af1cef07
+            </div>
           </nav>
         </div>
       </div>
