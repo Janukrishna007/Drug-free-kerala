@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 interface HamburgerMenuProps {
   isOpen: boolean;
   onClose: () => void;
+  onPledgeClick: () => void;
 }
 
 const menuVariants = {
@@ -57,7 +58,7 @@ const navigationItems = [
   { label: "Contact", href: "#contact" }
 ];
 
-export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ isOpen, onClose }) => {
+export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ isOpen, onClose, onPledgeClick }) => {
   const [shouldRender, setShouldRender] = useState(isOpen);
 
   useEffect(() => {
@@ -66,6 +67,11 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ isOpen, onClose })
 
   const handleNavigate = (href: string) => {
     window.location.href = href;
+    onClose();
+  };
+
+  const handlePledgeClick = () => {
+    onPledgeClick();
     onClose();
   };
 
@@ -152,16 +158,16 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ isOpen, onClose })
                 className="mt-auto"
               >
                 <motion.button
-                  onClick={() => handleNavigate('/create-certificate')}
-                  className="w-full bg-white hover:bg-gray-50 text-black py-5 rounded-xl font-medium text-lg transition-colors relative overflow-hidden group"
+                  onClick={() => handlePledgeClick()}
+                  className="w-full bg-[#52A35F] hover:bg-green-500  py-5 rounded-xl font-medium text-lg transition-colors relative overflow-hidden group"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <span className="relative z-10">Look up your certificate</span>
-                  <motion.div
+                  <span className="relative z-10 text-white">Take the Pledge</span>
+                  {/* <motion.div
                     className="absolute inset-0 bg-gradient-to-r from-white via-gray-100 to-white opacity-0 group-hover:opacity-100"
                     transition={{ duration: 0.3 }}
-                  />
+                  /> */}
                 </motion.button>
               </motion.div>
             </div>
