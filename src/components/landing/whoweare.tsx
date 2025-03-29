@@ -14,7 +14,7 @@ const WhoWeAreSection: React.FC = () => {
             ">
               We are committed to raising awareness against 
               drug abuse through education, media 
-              campaigns, and active community participation .
+              campaigns, and active community participation.
             </p>
             <div className="absolute bottom-0 left-0 w-20 h-20 bg-green-400 rounded-tr-full transition-transform duration-500 ease-out group-hover:scale-[1.75]"></div>
           </div>
