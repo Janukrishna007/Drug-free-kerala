@@ -14,7 +14,7 @@ const InitiativeCard: React.FC<InitiativeCardProps> = ({
   description,
   index 
 }) => {
-  const [isHovered, setIsHovered] = useState(false);
+  const [isClicked, setIsClicked] = useState(false);
 
   return (
     <motion.div
@@ -26,8 +26,8 @@ const InitiativeCard: React.FC<InitiativeCardProps> = ({
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.98 }}
       layout
-      onHoverStart={() => setIsHovered(true)}
-      onHoverEnd={() => setIsHovered(false)}
+      onHoverStart={() => setIsClicked(true)}
+      onHoverEnd={() => setIsClicked(false)}
     >
       <div className="relative aspect-[3/5] w-full overflow-hidden rounded-2xl group">
         <motion.img
@@ -35,7 +35,7 @@ const InitiativeCard: React.FC<InitiativeCardProps> = ({
           alt={title}
           className="absolute h-full w-full object-cover transition-all duration-500"
           animate={{
-            scale: isHovered ? 1.1 : 1
+            scale: isClicked ? 1.1 : 1
           }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         />
@@ -43,7 +43,7 @@ const InitiativeCard: React.FC<InitiativeCardProps> = ({
         <motion.div 
           className="absolute inset-0"
           animate={{
-            background: isHovered 
+            background: isClicked 
               ? "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0.1) 100%)" 
               : "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.1) 60%, transparent 100%)"
           }}
@@ -54,8 +54,8 @@ const InitiativeCard: React.FC<InitiativeCardProps> = ({
           <motion.h3 
             className="text-xl font-bold mb-2"
             animate={{
-              y: isHovered ? -8 : 0,
-              scale: isHovered ? 1.05 : 1
+              y: isClicked ? -8 : 0,
+              scale: isClicked ? 1.05 : 1
             }}
             transition={{ duration: 0.4 }}
           >
@@ -63,7 +63,7 @@ const InitiativeCard: React.FC<InitiativeCardProps> = ({
           </motion.h3>
           
           <AnimatePresence>
-            {isHovered && (
+            {isClicked && (
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
