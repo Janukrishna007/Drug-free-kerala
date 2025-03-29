@@ -186,7 +186,7 @@ export const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
               placeholder="Your Name"
               value={formData.name}
               onChange={handleInputChange}
-              className="px-5 py-2.5 text-sm rounded-md bg-zinc-400 bg-opacity-30 h-[42px] text-neutral-700 text-opacity-70 focus:outline-none focus:ring-2 focus:ring-[rgba(92,183,105,1)]"
+              className="px-5 py-2.5 text-sm rounded-md bg-zinc-400 bg-opacity-30 h-[42px] text-black text-opacity-70 focus:outline-none focus:ring-2 focus:ring-[rgba(92,183,105,1)]"
               aria-label="Your Name"
               required
             />
@@ -196,7 +196,7 @@ export const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
               placeholder="Email"
               value={formData.email}
               onChange={handleInputChange}
-              className="px-5 py-2.5 text-sm rounded-md bg-zinc-400 bg-opacity-30 h-[42px] text-neutral-700 text-opacity-70 focus:outline-none focus:ring-2 focus:ring-[rgba(92,183,105,1)]"
+              className="px-5 py-2.5 text-sm rounded-md bg-zinc-400 bg-opacity-30 h-[42px] text-black text-opacity-70 focus:outline-none focus:ring-2 focus:ring-[rgba(92,183,105,1)]"
               aria-label="Email"
               required
             />
