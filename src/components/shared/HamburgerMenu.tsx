@@ -166,7 +166,7 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ isOpen, onClose, o
                   <span className="relative z-10 text-white">Take the Pledge</span>
                
                 </motion.button>
-                <motion.button
+                {/* <motion.button
                   // onClick={() => handlePledgeClick()}
                   className="w-full bg-white hover:bg-[#cacccb]  py-5 mt-4 rounded-xl font-medium text-lg transition-colors relative overflow-hidden group"
                   whileHover={{ scale: 1.02 }}
@@ -174,7 +174,7 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ isOpen, onClose, o
                 >
                   <span className="relative z-10 text-black">Certificate Lookup</span>
                
-                </motion.button>
+                </motion.button> */}
               </motion.div>
             </div>
           </motion.div>
