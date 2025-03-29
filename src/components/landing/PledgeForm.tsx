@@ -1,18 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Certificate } from "@/components/certificate/Certificate";
-import { SuccessModal } from "./SuccessModal";
-import { ErrorModal } from "./ErrorModal";
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
 
 interface PledgeItemProps {
   id: string;
@@ -91,9 +80,6 @@ export const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showCertificate, setShowCertificate] = useState(false);
   const [certificateId, setCertificateId] = useState("");
-  const [isError, setIsError] = useState(false)
-  const [showModal, setShowModal] = useState(false)
-  const [showPledgeAlert, setShowPledgeAlert] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -117,7 +103,7 @@ export const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
     const allChecked = Object.values(pledgeItems).every(value => value === true);
     
     if (!allChecked) {
-      setShowPledgeAlert(true);
+      alert("Please accept all pledge conditions before submitting.");
       return;
     }
     
@@ -142,42 +128,28 @@ export const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const data = await response.json();
-
-      if (data.is_error) {
-        setIsError(true)
-        setFormData({
-          name: data.name,
-          email: data.email
-        });
-      }
-      const id = data.id;
-
-      const formattedId = `DKFC${id.toString().padStart(5, '0')}`;
-      setCertificateId(formattedId);
-
-      setShowModal(true)
-
       // Encode email for URL parameter
-      // const encodedEmail = encodeURIComponent(formData.email);
-      // const getResponse = await fetch(`https://mulearn.org/api/v1/drugfreekerala/get/?email=${encodedEmail}`, {
-      //   method: 'GET',
-      //   mode: 'cors',
-      //   headers: {
-      //     'Accept': 'application/json',
-      //   }
-      // });
+      const encodedEmail = encodeURIComponent(formData.email);
+      const getResponse = await fetch(`https://mulearn.org/api/v1/drugfreekerala/get/?email=${encodedEmail}`, {
+        method: 'GET',
+        mode: 'cors',
+        headers: {
+          'Accept': 'application/json',
+        }
+      });
 
-      // if (!getResponse.ok) {
-      //   throw new Error(`HTTP error! status: ${getResponse.status}`);
-      // }
+      if (!getResponse.ok) {
+        throw new Error(`HTTP error! status: ${getResponse.status}`);
+      }
 
-      // const getData = await getResponse.json();
-      // console.log('Fetched data:', getData);
+      const getData = await getResponse.json();
+      console.log('Get API response:', getData);
+      const certificateId = getData.id;
+      console.log('Certificate ID:', certificateId);
 
-      // const newCertificateId = "DFKC" + Date.now().toString();
-      // setCertificateId(newCertificateId);
-      // setShowCertificate(true);
+      const newCertificateId = "DFKC" + Date.now().toString();
+      setCertificateId(newCertificateId);
+      setShowCertificate(true);
 
     } catch (error) {
       console.error('Error:', error);
@@ -200,28 +172,6 @@ export const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
         onClose={handleCloseCertificate}
       />
     );
-  }
-
-  if (showModal && !isError) {
-    return (
-      <SuccessModal
-        name={formData.name}
-        certificateId={certificateId}
-        onViewCertificate={() => setShowCertificate(true)}
-        onClose={() => setShowModal(false)}
-      />
-    )
-  }
-
-  if (showModal && isError) {
-    return (
-      <ErrorModal
-      name={formData.name}
-      certificateId={certificateId}
-      onViewCertificate={() => setShowCertificate(true)}
-      onClose={() => setShowModal(false)}
-      />
-    )
   }
 
   return (
@@ -319,22 +269,6 @@ export const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
           </div>
         </form>
       </div>
-
-      <AlertDialog open={showPledgeAlert} onOpenChange={setShowPledgeAlert}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Complete Your Pledge</AlertDialogTitle>
-            <AlertDialogDescription>
-              Please accept all pledge conditions before submitting. This ensures your commitment to creating a drug-free Kerala.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogAction onClick={() => setShowPledgeAlert(false)}>
-              Continue
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
     </section>
   );
 };

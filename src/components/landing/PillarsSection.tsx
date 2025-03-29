@@ -196,7 +196,7 @@ export const PillarsSection = () => {
                   whileInView="visible"
                   transition={{ delay: 0.5 }}
                 >
-                  Comprehensive awareness programs for students, parents, and teachers
+                  Comprehensive awareness programs for students, parents, and teachers.
                 </motion.p>
               </div>
             </div>
@@ -279,7 +279,7 @@ export const PillarsSection = () => {
                   whileInView="visible"
                   transition={{ delay: 0.7 }}
                 >
-                  Taking concrete steps through support services and engagement
+                  Taking concrete steps through support services and engagement.
                 </motion.p>
               </div>
             </div>
