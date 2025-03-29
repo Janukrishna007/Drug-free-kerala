@@ -69,6 +69,7 @@ const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    id: "",
   });
   const [uniqueId, setUniqueId] = useState<string>("");
   const [pledgeItems, setPledgeItems] = useState({
@@ -152,7 +153,9 @@ const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
       }
 
       const getData = await getResponse.json();
-      console.log('Fetched data:', getData);
+      console.log('Get API response:', getData);
+      const certificateId = getData.id;
+      console.log('Certificate ID:', certificateId);
 
 
       const newUniqueId = "DFKC" + Date.now().toString();

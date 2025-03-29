@@ -4,7 +4,7 @@ import { HeroSection } from "@/components/landing/HeroSection";
 import { AboutSection } from "@/components/landing/AboutSection";
 import { PillarsSection } from "@/components/landing/PillarsSection";
 import { InitiativesSection } from "@/components/landing/InitiativesSection";
-import { JourneySection } from "@/components/landing/JourneySection";
+import  JourneySection from "@/components/landing/JourneySection";
 import { Footer } from "@/components/landing/Footer";
 import { PledgeForm } from "@/components/landing/PledgeForm";
 import WhoWeAreSection from "@/components/landing/whoweare";

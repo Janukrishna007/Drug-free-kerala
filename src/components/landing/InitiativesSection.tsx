@@ -18,7 +18,8 @@ const InitiativeCard: React.FC<InitiativeCardProps> = ({
 
   return (
     <motion.div
-      className="relative w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(20%-0.75rem)] overflow-hidden rounded-2xl cursor-pointer transition-all duration-300"
+      className="relative w-full md
+      :w-[calc(40%-0.5rem)] lg:w-[calc(20%-0.75rem)] overflow-hidden rounded-2xl cursor-pointer transition-all duration-300"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
