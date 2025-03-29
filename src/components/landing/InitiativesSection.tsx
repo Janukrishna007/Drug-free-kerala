@@ -167,7 +167,7 @@ export const InitiativesSection = () => {
     {
       title: "Mulearn Movement",
       image: "images/MuLearn movement.png",
-      description: "Harnessing peer influence, we promote drug prevention through leadership programs like the Near Peer Buddy System, encouraging students to support one another.Student-led campaigns, role model initiatives, and peer counseling empower youth. By involving them in school governance, social clubs, and leadership roles, we foster accountability and responsibility, guiding them toward a drug-free lifestyle."
+      description: "Harnessing peer influence, we promote drug prevention through leadership programs like the Near Peer Buddy System. Student-led campaigns, role model initiatives, and peer counseling empower youth. Involvement in school governance, social clubs, and leadership roles fosters accountability, guiding them toward a drug-free lifestyle."
     },
     {
       title: "Social Engagement",

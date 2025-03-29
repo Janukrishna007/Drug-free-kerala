@@ -59,19 +59,23 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onPledgeClick }) => {
           className="absolute h-full w-full object-cover inset-0"
         />
         <div className="container mx-auto relative py-20">
-          <div className="flex flex-col items-center w-full max-w-5xl mx-auto">
-            <div className="flex flex-col md:flex-row items-center w-full gap-10 mt-10 mb-10">
-              <div className="flex flex-col items-center text-white">
-                <div className="text-9xl md:text-8xl font-semibold">
+          <div className="flex flex-col items-center w-full max-w-6xl mx-auto">
+            {/* Main content container with improved centering */}
+            <div className="flex flex-col md:flex-row items-center justify-center w-full gap-10 mt-10 mb-10">
+              {/* Pledge count section with fixed width */}
+              <div className="flex flex-col items-center text-white md:w-1/3">
+                <div className="text-8xl md:text-8xl font-semibold">
                   <CountUp
                     start={0}
                     end={pledgeCount}
                     duration={2.5}
-                    />
+                  />
                 </div>
                 <div className="text-3xl md:text-5xl font-medium mt-4">Pledges</div>
               </div>
-              <div className="text-[rgba(244,244,244,1)] text-3xl md:text-5xl font-bold leading-tight text-centre md:text-left max-w-xl">
+
+              {/* Text section with fixed width */}
+              <div className="text-[rgba(244,244,244,1)] text-3xl md:text-5xl font-bold leading-tight text-center md:text-left md:w-1/2">
                 United{" "}
                 <span className="text-[rgba(92,183,105,1)]">
                   against addiction
