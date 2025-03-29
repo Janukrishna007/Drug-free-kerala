@@ -14,20 +14,24 @@ const InitiativeCard: React.FC<InitiativeCardProps> = ({
   description,
   index 
 }) => {
-  const [isClicked, setIsClicked] = useState(false);
+  const [isActive, setIsActive] = useState(false);
+
+  const handleActivation = (active: boolean) => {
+    setIsActive(active);
+  };
 
   return (
     <motion.div
-      className="relative w-full md
-      :w-[calc(40%-0.5rem)] lg:w-[calc(20%-0.75rem)] overflow-hidden rounded-2xl cursor-pointer transition-all duration-300"
+      className="relative w-full md:w-[calc(40%-0.5rem)] lg:w-[calc(20%-0.75rem)] overflow-hidden rounded-2xl cursor-pointer transition-all duration-300"
       initial={{ opacity: 0, y: 50 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ scale: 1.03 }}
       whileTap={{ scale: 0.98 }}
       layout
-      onHoverStart={() => setIsClicked(true)}
-      onHoverEnd={() => setIsClicked(false)}
+      onClick={() => handleActivation(!isActive)}
+      onHoverStart={() => handleActivation(true)}
+      onHoverEnd={() => handleActivation(false)}
     >
       <div className="relative aspect-[3/5] w-full overflow-hidden rounded-2xl group">
         <motion.img
@@ -35,7 +39,7 @@ const InitiativeCard: React.FC<InitiativeCardProps> = ({
           alt={title}
           className="absolute h-full w-full object-cover transition-all duration-500"
           animate={{
-            scale: isClicked ? 1.1 : 1
+            scale: isActive ? 1.1 : 1
           }}
           transition={{ duration: 0.6, ease: "easeOut" }}
         />
@@ -43,7 +47,7 @@ const InitiativeCard: React.FC<InitiativeCardProps> = ({
         <motion.div 
           className="absolute inset-0"
           animate={{
-            background: isClicked 
+            background: isActive 
               ? "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.7) 40%, rgba(0,0,0,0.4) 70%, rgba(0,0,0,0.1) 100%)" 
               : "linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.4) 30%, rgba(0,0,0,0.1) 60%, transparent 100%)"
           }}
@@ -54,8 +58,8 @@ const InitiativeCard: React.FC<InitiativeCardProps> = ({
           <motion.h3 
             className="text-xl font-bold mb-2"
             animate={{
-              y: isClicked ? -8 : 0,
-              scale: isClicked ? 1.05 : 1
+              y: isActive ? -8 : 0,
+              scale: isActive ? 1.05 : 1
             }}
             transition={{ duration: 0.4 }}
           >
@@ -63,7 +67,7 @@ const InitiativeCard: React.FC<InitiativeCardProps> = ({
           </motion.h3>
           
           <AnimatePresence>
-            {isClicked && (
+            {isActive && (
               <motion.div
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: 'auto' }}
@@ -218,4 +222,4 @@ export const InitiativesSection = () => {
       </div>
     </section>
   );
-}; 
+};
