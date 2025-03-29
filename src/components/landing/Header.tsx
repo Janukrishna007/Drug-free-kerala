@@ -45,12 +45,12 @@ export const Header = () => {
                 <img
                   src="/images/gtech.png"
                   alt="GTech Logo"
-                  className="h-8 object-contain"
+                  className="h-5 object-contain"
                 />
                 <img
                   src="/images/mulearn-white-logo.png"
                   alt="MuLearn Logo"
-                  className="h-8 object-contain"
+                  className="h-5 object-contain"
                 />
               </div>
 
