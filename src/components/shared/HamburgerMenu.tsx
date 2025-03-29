@@ -128,7 +128,7 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ isOpen, onClose, o
                 animate="visible"
                 className="flex-1 mt-8 "
               >
-                <ul className="space-y-8 text-center">
+                <ul className=" text-center flex flex-col gap-8 h-full justify-around ">
                   {navigationItems.map((item, index) => (
                     <motion.li
                       key={item.label}
@@ -164,17 +164,10 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ isOpen, onClose, o
                   whileTap={{ scale: 0.98 }}
                 >
                   <span className="relative z-10 text-white">Take the Pledge</span>
+
                
                 </motion.button>
-                {/* <motion.button
-                  // onClick={() => handlePledgeClick()}
-                  className="w-full bg-white hover:bg-[#cacccb]  py-5 mt-4 rounded-xl font-medium text-lg transition-colors relative overflow-hidden group"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  <span className="relative z-10 text-black">Certificate Lookup</span>
-               
-                </motion.button> */}
+              
               </motion.div>
             </div>
           </motion.div>
