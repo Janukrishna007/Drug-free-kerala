@@ -211,7 +211,7 @@ export default function JourneySection(): JSX.Element {
     <section className="bg-gradient-to-b from-background to-background/95 py-16">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-3 md:mb-4 animate-fadeIn">
-          Our Journey: From Darkness to Light
+          <span className="font-normal">Our Journey</span>: From Darkness to Light
         </h2>
         <p className="text-base md:text-lg text-muted-foreground text-center max-w-3xl mx-auto mb-12 animate-fadeIn delay-100">
           Witness the transformation journey from the challenges of substance

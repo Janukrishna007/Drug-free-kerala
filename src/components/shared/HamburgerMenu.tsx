@@ -9,19 +9,19 @@ interface HamburgerMenuProps {
 
 const menuVariants = {
   closed: {
-    opacity: 0,
-    scale: 0.95,
+    x: "100%",
     transition: {
-      duration: 0.3,
-      ease: "easeInOut"
+      type: "spring",
+      stiffness: 300,
+      damping: 30
     }
   },
   open: {
-    opacity: 1,
-    scale: 1,
+    x: 0,
     transition: {
-      duration: 0.4,
-      ease: "easeOut"
+      type: "spring",
+      stiffness: 300,
+      damping: 30
     }
   }
 };
@@ -32,20 +32,20 @@ const containerVariants = {
     opacity: 1,
     transition: {
       delayChildren: 0.2,
-      staggerChildren: 0.1
+      staggerChildren: 0.08
     }
   }
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, x: 20 },
   visible: {
     opacity: 1,
-    y: 0,
+    x: 0,
     transition: {
       type: "spring",
-      stiffness: 300,
-      damping: 24
+      stiffness: 260,
+      damping: 20
     }
   }
 };
@@ -63,23 +63,10 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ isOpen, onClose, o
 
   useEffect(() => {
     if (isOpen) setShouldRender(true);
-    
-    // Prevent body scrolling when menu is open
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    
-    // Cleanup function
-    return () => {
-      document.body.style.overflow = '';
-    };
   }, [isOpen]);
 
   const handleNavigate = (href: string) => {
     window.location.href = href;
-    
     onClose();
   };
 
@@ -91,103 +78,98 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ isOpen, onClose, o
   return (
     <AnimatePresence>
       {shouldRender && (
-        <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.3 }}
-          onAnimationComplete={() => {
-            if (!isOpen) setShouldRender(false);
-          }}
-        >
+        <>
           {/* Backdrop */}
           <motion.div
-            className={`absolute inset-0 bg-black/60 backdrop-blur-lg ${isOpen ? "" : "hidden"}`}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-md z-40"
             onClick={onClose}
           />
 
-          {/* Menu Content */}
+          {/* Menu */}
           <motion.div
-            className="relative z-10 w-full max-w-4xl mx-auto px-6"
+            className="fixed top-0 right-0 h-full w-full md:w-[400px] bg-gradient-to-b from-black via-black/95 to-[#1a1a1a] z-50 overflow-hidden"
             variants={menuVariants}
             initial="closed"
             animate={isOpen ? "open" : "closed"}
             exit="closed"
+            onAnimationComplete={() => {
+              if (!isOpen) setShouldRender(false);
+            }}
           >
-            {/* Close Button */}
-            <motion.button
-              onClick={onClose}
-              className="absolute top-0 right-0 sm:top-6 sm:right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 transition-colors flex items-center justify-center"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <div className="relative w-6 h-6">
-                <motion.span
-                  className="absolute top-1/2 left-0 w-full h-[2px] bg-white rounded-full -translate-y-1/2"
-                  initial={{ rotate: 0 }}
-                  animate={{ rotate: 45 }}
-                />
-                <motion.span
-                  className="absolute top-1/2 left-0 w-full h-[2px] bg-white rounded-full -translate-y-1/2"
-                  initial={{ rotate: 0 }}
-                  animate={{ rotate: -45 }}
-                />
-              </div>
-            </motion.button>
+            <div className="h-full p-12 flex flex-col relative">
+              {/* Close Button */}
+              <motion.button
+                onClick={onClose}
+                className="absolute top-8 right-8 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors flex items-center justify-center group"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <div className="relative w-5 h-5">
+                  <motion.span
+                    className="absolute top-1/2 left-0 w-full h-[2px] bg-white rounded-full -translate-y-1/2"
+                    initial={{ rotate: 0 }}
+                    animate={{ rotate: 45 }}
+                  />
+                  <motion.span
+                    className="absolute top-1/2 left-0 w-full h-[2px] bg-white rounded-full -translate-y-1/2"
+                    initial={{ rotate: 0 }}
+                    animate={{ rotate: -45 }}
+                  />
+                </div>
+              </motion.button>
 
-            <motion.nav
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="flex flex-col items-center justify-center min-h-screen py-16"
-            >
-              <ul className="flex flex-col items-center space-y-8 mb-16">
-                {navigationItems.map((item) => (
-                  <motion.li
-                    key={item.label}
-                    variants={itemVariants}
-                    className="overflow-hidden"
-                  >
-                    <button
-                      onClick={() =>{
-                        
-                        handleNavigate(item.href) 
-                        
-                      } }
-                      className="relative text-4xl sm:text-5xl font-medium text-white/90 hover:text-white transition-colors group"
+              <motion.nav
+                variants={containerVariants}
+                initial="hidden"
+                animate="visible"
+                className="flex-1 mt-8"
+              >
+                <ul className="space-y-8">
+                  {navigationItems.map((item, index) => (
+                    <motion.li
+                      key={item.label}
+                      variants={itemVariants}
+                      custom={index}
+                      className="overflow-hidden"
                     >
-                      <span className="relative z-10 inline-block">{item.label}</span>
-                      <motion.div
-                        className="absolute left-0 bottom-0 w-0 h-[3px] bg-[#5CB769] rounded-full origin-left"
-                        whileHover={{ width: "100%" }}
-                        transition={{ duration: 0.3, ease: "easeInOut" }}
-                      />
-                    </button>
-                  </motion.li>
-                ))}
-              </ul>
+                      <button
+                        onClick={() => handleNavigate(item.href)}
+                        className="relative text-4xl font-medium text-white/90 hover:text-white transition-colors group"
+                      >
+                        <span className="relative z-10 inline-block">{item.label}</span>
+                        <motion.div
+                          className="absolute left-0 bottom-0 w-0 h-[3px] bg-[#5CB769] rounded-full origin-left"
+                          whileHover={{ width: "100%" }}
+                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                        />
+                      </button>
+                    </motion.li>
+                  ))}
+                </ul>
+              </motion.nav>
 
-              {/* Take the Pledge Button */}
+              {/* Certificate Lookup Button */}
               <motion.div
                 variants={itemVariants}
-                className="w-full max-w-xs"
+                className="mt-auto"
               >
                 <motion.button
-                  onClick={handlePledgeClick}
-                  className="w-full bg-[#52A35F] hover:bg-green-500 py-5 rounded-xl font-medium text-lg transition-colors relative overflow-hidden group"
-                  whileHover={{ scale: 1.05 }}
+                  onClick={() => handlePledgeClick()}
+                  className="w-full bg-green-500 hover:bg-[#52A35F]  py-5 rounded-xl font-medium text-lg transition-colors relative overflow-hidden group"
+                  whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
                   <span className="relative z-10 text-white">Take the Pledge</span>
+               
                 </motion.button>
               </motion.div>
-            </motion.nav>
+            </div>
           </motion.div>
-        </motion.div>
+        </>
       )}
     </AnimatePresence>
   );

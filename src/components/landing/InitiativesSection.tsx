@@ -167,7 +167,9 @@ export const InitiativesSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
+            <h2 className="text-[#1E1E1E] text-3xl md:text-4xl font-medium mb-4">
             Key <span className="font-bold">Initiatives</span>
+          </h2>
           </motion.h2>
           <motion.p 
             className="text-black text-base font-medium max-w-2xl mx-auto"
