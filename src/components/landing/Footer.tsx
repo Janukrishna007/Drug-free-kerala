@@ -109,7 +109,7 @@ export const Footer = ({ onPledgeClick }: { onPledgeClick: () => void }) => {
               <address className="text-[rgba(242,242,242,1)] text-base font-light leading-6 not-italic">
                 Technopark, Kazhakoottam, Trivandrum
                 <br />
-                695581, Kerala, India
+                695581, Kerala, India.
               </address>
             </div>
             
