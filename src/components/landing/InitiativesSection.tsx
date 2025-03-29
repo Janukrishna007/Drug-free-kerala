@@ -98,12 +98,6 @@ const InitiativeCard: React.FC<InitiativeCardProps> = ({
                   {/* Animated description with word-by-word reveal */}
                   <div 
                     className="text-sm font-light leading-relaxed text-white/90 relative"
-                    style={{ 
-                      maxHeight: '180px',
-                      overflow: 'auto',
-                      scrollbarWidth: 'none',
-                      msOverflowStyle: 'none'
-                    }}
                   >
                     {description.split(' ').map((word, i) => (
                       <motion.span
@@ -112,13 +106,11 @@ const InitiativeCard: React.FC<InitiativeCardProps> = ({
                         initial={{ 
                           opacity: 0, 
                           y: 10,
-                          filter: "blur(8px)",
                           scale: 0.95
                         }}
                         animate={{ 
                           opacity: 1, 
                           y: 0,
-                          filter: "blur(0px)",
                           scale: 1
                         }}
                         transition={{ 
@@ -130,22 +122,6 @@ const InitiativeCard: React.FC<InitiativeCardProps> = ({
                         {word}{' '}
                       </motion.span>
                     ))}
-                    
-                    {/* Animated highlight effect */}
-                    <motion.div
-                      className="absolute -inset-1 bg-gradient-to-r from-transparent via-white/10 to-transparent pointer-events-none"
-                      initial={{ opacity: 0, x: -100 }}
-                      animate={{ 
-                        opacity: [0, 0.2, 0],
-                        x: 500
-                      }}
-                      transition={{ 
-                        duration: 2.5, 
-                        delay: 0.3,
-                        repeat: Infinity,
-                        repeatDelay: 5
-                      }}
-                    />
                   </div>
                 </motion.div>
               </motion.div>
@@ -172,7 +148,7 @@ export const InitiativesSection = () => {
     {
       title: "Social Engagement",
       image: "images/Social Engagement.png",
-      description: "Online platforms and social media help combat substance abuse. Instagram, Facebook, and YouTube share impactful stories, videos, and awareness challenges. Games, comics, and virtual communities engage younger audiences. This dedicated website offers drug prevention resources, anonymous reporting, and virtual counseling, ensuring easy access to anti-drug support."
+      description: "Online platforms and social media help combat substance abuse. Instagram, Facebook, and YouTube share impactful stories, videos, and awareness challenges. Games, comics, and virtual communities engage younger audiences. A dedicated website provides drug prevention resources, anonymous reporting, and virtual counseling for easy access to anti-drug support."
     },
     {
       title: "Community Engagement",
