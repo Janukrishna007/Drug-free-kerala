@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Certificate } from "@/components/certificate/Certificate";
 
 interface PledgeItemProps {
@@ -80,6 +80,24 @@ export const PledgeForm: React.FC<PledgeFormProps> = ({ onClose }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showCertificate, setShowCertificate] = useState(false);
   const [certificateId, setCertificateId] = useState("");
+
+  useEffect(() => {
+    const handleEscKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        if (showCertificate) {
+          handleCloseCertificate();
+        } else {
+          onClose();
+        }
+      }
+    };
+    
+    window.addEventListener('keydown', handleEscKey);
+    
+    return () => {
+      window.removeEventListener('keydown', handleEscKey);
+    };
+  }, [showCertificate, onClose]);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;

@@ -25,6 +25,21 @@ export const Certificate: React.FC<CertificateProps> = ({ name, certificateId, o
     return `DKFC${paddedNum}`;
   };
 
+  // Add ESC key handler
+  useEffect(() => {
+    const handleEscKey = (event: KeyboardEvent) => {
+      if (event.key === 'Escape' && onClose) {
+        onClose();
+      }
+    };
+    
+    window.addEventListener('keydown', handleEscKey);
+    
+    return () => {
+      window.removeEventListener('keydown', handleEscKey);
+    };
+  }, [onClose]);
+
   useEffect(() => {
     const generateCertificate = async () => {
       if (!canvasRef.current) return;
