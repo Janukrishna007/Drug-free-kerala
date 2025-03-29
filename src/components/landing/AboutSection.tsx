@@ -79,7 +79,7 @@ export const AboutSection = () => {
   };
 
   return (
-    <section id="about" className="bg-[rgba(239,238,236,1)] w-full overflow-hidden py-28">
+    <section id="about" className="bg-[rgba(239,238,236,1)] w-full overflow-hidden py-10">
       <div className="container mx-auto px-4 md:px-8 lg:px-20">
         <div className="flex flex-col md:flex-row gap-10">
           <div className="w-full md:w-2/5">
