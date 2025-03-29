@@ -18,7 +18,7 @@ const mediaData: MediaItem[] = [
   {
     id: 1,
     type: "image",
-    imageUrl: "../public/images/thumb.jpg",
+    imageUrl: "../images/thumb.jpg",
     size: "small",
     mobilePriority: 1,
   },
@@ -34,7 +34,7 @@ const mediaData: MediaItem[] = [
   {
     id: 3,
     type: "image",
-    imageUrl: "../public/images/thumb height.jpg",
+    imageUrl: "../images/thumb height.jpg",
     size: "tall", // Changed from 'large' to 'tall'
   },
   {
@@ -48,19 +48,19 @@ const mediaData: MediaItem[] = [
   {
     id: 5,
     type: "image",
-    imageUrl: "../public/images/5.jpg",
+    imageUrl: "../images/5.jpg",
     size: "small",
   },
   {
     id: 6,
     type: "image",
-    imageUrl: "/public/images/thumb3.jpg",
+    imageUrl: "../images/thumb3.jpg",
     size: "small",
   },
   {
     id: 7,
     type: "image",
-    imageUrl: "../public/images/thumb4.jpg",
+    imageUrl: "../images/thumb4.jpg",
     size: "small",
   },
   {
@@ -74,7 +74,7 @@ const mediaData: MediaItem[] = [
   {
     id: 9,
     type: "image",
-    imageUrl: "../public/images/thumb6.jpg",
+    imageUrl: "../images/thumb6.jpg",
     size: "small",
   },
 ];
