@@ -186,12 +186,12 @@ export const InitiativesSection = () => {
       <div className="container mx-auto px-4 md:px-8 lg:px-20">
         <div className="text-center mb-12">
           <motion.h2 
-            className="text-[#1E1E1E] text-3xl md:text-4xl font-bold mb-4"
+            className="text-[#1E1E1E] text-3xl md:text-4xl font-semibold mb-4"
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
           >
-            Key Initiatives
+            Key <span className="font-bold">Initiatives</span>
           </motion.h2>
           <motion.p 
             className="text-black text-base font-medium max-w-2xl mx-auto"
