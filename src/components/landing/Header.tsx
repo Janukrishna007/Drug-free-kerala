@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { HamburgerMenu } from "@/components/shared/HamburgerMenu";
 import { motion, useScroll, useTransform } from "framer-motion";
 
-export const Header = () => {
+interface HeaderProps {
+  onPledgeClick?: () => void;
+}
+
+export const Header: React.FC<HeaderProps> = ({ onPledgeClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { scrollY } = useScroll();
   
@@ -100,6 +104,7 @@ export const Header = () => {
       <HamburgerMenu 
         isOpen={isMenuOpen}
         onClose={() => setIsMenuOpen(false)}
+        onPledgeClick={onPledgeClick}
       />
     </>
   );
