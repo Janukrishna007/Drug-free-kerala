@@ -52,9 +52,9 @@ export const drawTextOnCanvas = async (
 
       // Calculate positions relative to template dimensions
       // Using the template's reference dimensions (1470x1040 as per original code)
-      const relativeX = (x / 1470) * canvas.width;
+      const relativeX = (x / 1040) * canvas.width;
       const relativeY = (y / 1040) * canvas.height;
-      const relativeMaxWidth = (maxWidth / 1470) * canvas.width;
+      const relativeMaxWidth = (maxWidth / 1040) * canvas.width;
 
       // Fixed line height of 28px, scaled relative to canvas height
       const lineHeight = 28 * (canvas.height / 1040);
@@ -148,60 +148,49 @@ export const Certificate: React.FC<CertificateProps> = ({
   };
 
   // Generate certificate when template is ready
-  useEffect(() => {
-    if (!templateUrl || !canvasRef.current) return;
+  // useEffect(() => {
+  //   if (!templateUrl || !canvasRef.current) return;
 
-    const generateCertificate = async () => {
-      if (canvasRef.current) {
-        const textCoordinates: TextCoordinate[] = [
-          // Name
-          {
-            x: 735, // center of the certificate
-            y: 520, // adjusted position
-            fontSize: 42,
-            color: '#1E1E1E',
-            maxWidth: 900,
-            maxLines: 2,
-            value: name,
-            hAlign: 'center'
-          },
-          // Certificate ID
-          {
-            x: 735, // center of the certificate
-            y: 650, // adjusted position
-            fontSize: 24,
-            color: '#525B65',
-            maxWidth: 500,
-            maxLines: 1,
-            value: `Certificate ID: ${certificateId}`,
-            hAlign: 'center'
-          },
-          // Date
-          {
-            x: 1100, // right side of the certificate
-            y: 780, // bottom of the certificate
-            fontSize: 18,
-            color: '#525B65',
-            maxWidth: 300,
-            maxLines: 1,
-            value: currentDate,
-            hAlign: 'center'
-          }
-        ];
+  //   const generateCertificate = async () => {
+  //     if (canvasRef.current) {
+  //       const textCoordinates: TextCoordinate[] = [
+  //         // Name
+  //         {
+  //           x: 520, // center of the certificate (1040/2)
+  //           y: 520, // center vertically
+  //           fontSize: 42,
+  //           color: '#1E1E1E',
+  //           maxWidth: 900,
+  //           maxLines: 2,
+  //           value: name,
+  //           hAlign: 'center'
+  //         },
+  //         // Certificate ID
+  //         {
+  //           x: 520, // center of the certificate (1040/2)
+  //           y: 750, // bottom section
+  //           fontSize: 24,
+  //           color: '#525B65',
+  //           maxWidth: 500,
+  //           maxLines: 1,
+  //           value: `Certificate ID: ${certificateId}`,
+  //           hAlign: 'center'
+  //         },
+  //       ];
 
-        await drawTextOnCanvas(
-          canvasRef.current,
-          templateUrl,
-          textCoordinates
-        );
+  //       await drawTextOnCanvas(
+  //         canvasRef.current,
+  //         templateUrl,
+  //         textCoordinates
+  //       );
 
-        setIsReady(true);
-        if (onReady) onReady();
-      }
-    };
+  //       setIsReady(true);
+  //       if (onReady) onReady();
+  //     }
+  //   };
 
-    generateCertificate();
-  }, [templateUrl, name, certificateId, currentDate, onReady]);
+  //   generateCertificate();
+  // }, [templateUrl, name, certificateId, currentDate, onReady]);
 
   const handleDownload = () => {
     if (canvasRef.current && isReady) {

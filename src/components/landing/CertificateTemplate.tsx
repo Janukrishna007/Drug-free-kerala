@@ -11,7 +11,7 @@ interface CertificateTemplateProps {
  * for development purposes. In a production environment, you would use an actual image.
  */
 export const CertificateTemplate: React.FC<CertificateTemplateProps> = ({
-  width = 1470,
+  width = 1040,
   height = 1040,
   onGenerated
 }) => {

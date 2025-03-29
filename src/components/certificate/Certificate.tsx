@@ -34,33 +34,23 @@ export const Certificate: React.FC<CertificateProps> = ({ name, certificateId, o
         
         const textCoordinates = [
           {
-            x: 540,
-            y: 750,
-            fontSize: 32,
+            x: 550,
+            y: 460,
+            fontSize: 48,
             color: '#000000',
+            maxWidth: 800,
+            maxLines: 2,
+            value: name,
+            hAlign: 'center' as const
+          },
+          {
+            x: 530,
+            y: 850,
+            fontSize: 30,
+            color: '#5D5D5D',
             maxWidth: 400,
             maxLines: 1,
             value: formattedId,
-            hAlign: 'center' as const
-          },
-          {
-            x: 540,
-            y: 550,
-            fontSize: 24,
-            color: '#000000',
-            maxWidth: 800,
-            maxLines: 3,
-            value: "Proud to take a stand against drug abuse and commit to a healthier, drug-free future. Together, we create change!",
-            hAlign: 'center' as const
-          },
-          {
-            x: 540,
-            y: 880,
-            fontSize: 36,
-            color: '#00813A',
-            maxWidth: 600,
-            maxLines: 1,
-            value: "#StrongerWithoutDrugs",
             hAlign: 'center' as const
           }
         ];
@@ -86,7 +76,7 @@ export const Certificate: React.FC<CertificateProps> = ({ name, certificateId, o
     };
 
     generateCertificate();
-  }, [certificateId]);
+  }, [certificateId, name]);
 
   const handleDownload = () => {
     if (!canvasRef.current) return;
