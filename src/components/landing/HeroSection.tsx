@@ -45,8 +45,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ onPledgeClick }) => {
     };
 
     fetchPledgeCount();
-    // Poll every 30 seconds
-    const interval = setInterval(fetchPledgeCount, 30000);
+    const interval = setInterval(fetchPledgeCount, 15000);
     return () => clearInterval(interval);
   }, []);
 
