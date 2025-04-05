@@ -208,7 +208,7 @@ export default function JourneySection(): JSX.Element {
   useClickAway(modalRef, closeMediaPopup);
 
   return (
-    <section className="bg-gradient-to-b from-background to-background/95 py-16">
+    <section id="journey" className="bg-[rgba(239,238,236,1)] py-16">
       <div className="container mx-auto px-4">
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-3 md:mb-4 animate-fadeIn">
           <span className="font-normal">Our Journey</span>: From Darkness to Light

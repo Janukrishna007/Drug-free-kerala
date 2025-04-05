@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from 'react';
-import { Certificate } from '@/components/landing/Certificate';
+import { Certificate } from '@/components/certificate/Certificate';
 import { useParams } from 'next/navigation';
 
 // Mock data for demonstration - would be replaced with real API call

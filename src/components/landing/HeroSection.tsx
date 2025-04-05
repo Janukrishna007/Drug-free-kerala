@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { CertificateLookup } from "./CertificateLookup";
+import { CertificateLookup } from '@/components/certificate/CertificateLookup';
 import CountUp from 'react-countup';
 
 

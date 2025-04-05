@@ -121,7 +121,7 @@ export const Footer = ({ onPledgeClick }: { onPledgeClick: () => void }) => {
                 href="tel:+919876543210"
                 className="hover:text-[rgba(92,183,105,1)] transition-colors"
               >
-                +91 987 654 3210
+                +91 8590276004
               </a>
             </div>
           </div>

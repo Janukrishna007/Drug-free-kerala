@@ -141,7 +141,7 @@ export const InitiativesSection = () => {
       description: "Empowering youth with technical and artistic skills provides a strong defense against drug abuse by fostering purpose and self-worth. Skill-building programs that enhance problem-solving and emotional regulation create resilience against negative influences. Through workshops and career- oriented camps, young minds stay engaged, responsible, and socially aware, reducing the likelihood of drug dependency."
     },
     {
-      title: "Mulearn Movement",
+      title: "µlearn Movement",
       image: "images/MuLearn movement.png",
       description: "Harnessing peer influence, we promote drug prevention through leadership programs like the Near Peer Buddy System. Student-led campaigns, role model initiatives, and peer counseling empower youth. Involvement in school governance, social clubs, and leadership roles fosters accountability, guiding them toward a drug-free lifestyle."
     },

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
-import { Certificate } from './Certificate';
+import { Certificate } from '@/components/certificate/Certificate';
 
 interface SuccessModalProps {
   name: string;

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from 'react';
-import { Certificate } from '@/components/landing/Certificate';
+import { Certificate } from '@/components/certificate/Certificate';
 import { Button } from '@/components/ui/button';
 
 export default function CreateCertificatePage() {

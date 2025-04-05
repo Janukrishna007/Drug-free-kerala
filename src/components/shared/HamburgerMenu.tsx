@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { FaTimes } from 'react-icons/fa';
 
 interface HamburgerMenuProps {
   isOpen: boolean;
@@ -10,18 +11,22 @@ interface HamburgerMenuProps {
 const menuVariants = {
   closed: {
     x: "100%",
+    opacity: 0,
     transition: {
       type: "spring",
       stiffness: 300,
-      damping: 30
+      damping: 35,
+      opacity: { duration: 0.2 }
     }
   },
   open: {
     x: 0,
+    opacity: 1,
     transition: {
       type: "spring",
       stiffness: 300,
-      damping: 30
+      damping: 35,
+      opacity: { duration: 0.4 }
     }
   }
 };
@@ -31,17 +36,17 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      delayChildren: 0.2,
-      staggerChildren: 0.08
+      delayChildren: 0.1,
+      staggerChildren: 0.1
     }
   }
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, x: 20 },
+  hidden: { opacity: 0, y: 10 },
   visible: {
     opacity: 1,
-    x: 0,
+    y: 0,
     transition: {
       type: "spring",
       stiffness: 260,
@@ -66,8 +71,24 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ isOpen, onClose, o
   }, [isOpen]);
 
   const handleNavigate = (href: string) => {
-    window.location.href = href;
     onClose();
+    
+    // Handle home page navigation differently
+    if (href === "/") {
+      window.location.href = href;
+      return;
+    }
+
+    // For section navigation, use smooth scrolling
+    const element = document.querySelector(href);
+    if (element) {
+      setTimeout(() => {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      }, 100); // Small delay to ensure the menu closes first
+    }
   };
 
   const handlePledgeClick = () => {
@@ -85,13 +106,13 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ isOpen, onClose, o
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-md z-40"
+            className="fixed inset-0 bg-black/90 backdrop-blur-sm z-40"
             onClick={onClose}
           />
 
           {/* Menu */}
           <motion.div
-            className="fixed top-0 right-0 h-full w-full md:w-[400px] bg-gradient-to-b from-black via-black/95 to-[#1a1a1a] z-50 overflow-hidden"
+            className="fixed top-0 right-0 h-[100dvh] w-full md:w-[380px] bg-[#0A0A0A] z-50 overflow-hidden shadow-2xl"
             variants={menuVariants}
             initial="closed"
             animate={isOpen ? "open" : "closed"}
@@ -100,74 +121,71 @@ export const HamburgerMenu: React.FC<HamburgerMenuProps> = ({ isOpen, onClose, o
               if (!isOpen) setShouldRender(false);
             }}
           >
-            <div className="h-full p-12 flex flex-col relative">
+            <div className="h-full flex flex-col relative px-8 py-16">
               {/* Close Button */}
               <motion.button
                 onClick={onClose}
-                className="absolute top-8 right-8 w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 transition-colors flex items-center justify-center group"
-                whileHover={{ scale: 1.1 }}
+                className="absolute top-6 right-6 w-10 h-10 rounded-full bg-white/5 hover:bg-white/10 transition-all duration-300 flex items-center justify-center group"
+                whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <div className="relative w-5 h-5">
-                  <motion.span
-                    className="absolute top-1/2 left-0 w-full h-[2px] bg-white rounded-full -translate-y-1/2"
-                    initial={{ rotate: 0 }}
-                    animate={{ rotate: 45 }}
-                  />
-                  <motion.span
-                    className="absolute top-1/2 left-0 w-full h-[2px] bg-white rounded-full -translate-y-1/2"
-                    initial={{ rotate: 0 }}
-                    animate={{ rotate: -45 }}
-                  />
-                </div>
+                <FaTimes className="w-5 h-5 text-white/70 group-hover:text-white transition-colors duration-300" />
               </motion.button>
 
               <motion.nav
                 variants={containerVariants}
                 initial="hidden"
                 animate="visible"
-                className="flex-1 mt-8 "
+                className="flex-1 mt-12"
               >
-                <ul className=" text-center flex flex-col gap-8 h-full justify-around ">
+                <ul className="flex flex-col gap-10 items-center md:items-start">
                   {navigationItems.map((item, index) => (
                     <motion.li
                       key={item.label}
                       variants={itemVariants}
                       custom={index}
-                      className="overflow-hidden"
+                      className="w-full overflow-hidden"
                     >
-                      <button
-                        onClick={() => handleNavigate(item.href)}
-                        className="relative text-4xl font-medium text-white/90 hover:text-white transition-colors group"
-                      >
-                        <span className="relative z-10 inline-block">{item.label}</span>
-                        <motion.div
-                          className="absolute left-0 bottom-0 w-0 h-[3px] bg-[#5CB769] rounded-full origin-left"
-                          whileHover={{ width: "100%" }}
-                          transition={{ duration: 0.3, ease: "easeInOut" }}
+                      <div className="group relative w-full text-center md:text-left">
+                        <button
+                          onClick={() => handleNavigate(item.href)}
+                          className="relative text-2xl text-white/70 hover:text-white transition-all duration-300 py-2"
+                        >
+                          {item.label}
+                        </button>
+                        <motion.div 
+                          className="absolute bottom-0 left-0 w-full h-[2px] bg-[#5CB769] transform origin-left"
+                          initial={{ scaleX: 0 }}
+                          whileHover={{ scaleX: 1 }}
+                          transition={{ duration: 0.3, ease: "easeOut" }}
                         />
-                      </button>
+                      </div>
                     </motion.li>
                   ))}
                 </ul>
               </motion.nav>
 
-              {/* Certificate Lookup Button */}
+              {/* Pledge Button */}
               <motion.div
                 variants={itemVariants}
-                className="mt-auto"
+                className="mt-auto pt-8 border-t border-white/10"
               >
                 <motion.button
-                  onClick={() => handlePledgeClick()}
-                  className="w-full bg-green-500 hover:bg-[#52A35F]  py-5 rounded-xl font-medium text-lg transition-colors relative overflow-hidden group"
-                  whileHover={{ scale: 1.02 }}
+                  onClick={handlePledgeClick}
+                  className="w-full bg-[#5CB769] hover:bg-[#4ca357] py-4 rounded-lg font-light text-base text-white transition-all duration-300 relative overflow-hidden group flex items-center justify-center gap-2"
+                  whileHover={{ scale: 1.01 }}
                   whileTap={{ scale: 0.98 }}
                 >
-                  <span className="relative z-10 text-white">Take the Pledge</span>
-
-               
+                  <span className="relative tracking-wide">Take the Pledge</span>
+                  <motion.span
+                    initial={{ x: -10, opacity: 0 }}
+                    whileHover={{ x: 0, opacity: 1 }}
+                    transition={{ duration: 0.3 }}
+                    className="text-lg"
+                  >
+                    →
+                  </motion.span>
                 </motion.button>
-              
               </motion.div>
             </div>
           </motion.div>
