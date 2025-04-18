@@ -94,7 +94,7 @@ export const Certificate: React.FC<CertificateProps> = ({ name, certificateId, o
     const formattedId = formatCertificateId(certificateId);
     
     // Predefined text message
-    const text = `🌿 Proud to be part of the movement! 🌿
+    const text = `Proud to be part of the movement!
 
 I've taken a pledge to stand strong against drug abuse and contribute to building a healthier, drug-free Kerala. 🕊
 
@@ -103,20 +103,24 @@ Substance abuse impacts not just individuals but entire communities. By choosing
 A huge thank you to μLearn and the Group of Technology Companies (GTech) for creating this powerful avenue to raise awareness and inspire collective action. 💚
 
 🆔 My Pledge ID: ${formattedId}
-#StrongerWithoutDrugs #DrugFreeKerala #HealthyLiving #YouthForChange #mulearn #Gtech #SocialImpact #SayNoToDrugs #TogetherWeCan`;
+NammalOttakkettu for a #drugfreeKerala
 
-    const url = window.location.href;
+
+#StrongerWithoutDrugs #DrugFreeKerala #HealthyLiving #YouthForChange #mulearn #Gtech #SocialImpact #SayNoToDrugs #TogetherWeCan
+
+drugfreekerala.com`;
+
     let shareUrl = '';
 
     switch (platform) {
       case 'twitter':
-        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
+        shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
         break;
       case 'facebook':
-        shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`;
+        shareUrl = `https://www.facebook.com/sharer/sharer.php?quote=${encodeURIComponent(text)}`;
         break;
       case 'whatsapp':
-        shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(`${text}\n${url}`)}`;
+        shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
         break;
     }
 
