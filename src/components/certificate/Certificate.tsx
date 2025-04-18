@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { drawTextOnCanvas } from '@/utils/canvas';
-import { FaTwitter, FaFacebookF, FaLinkedinIn, FaInstagram, FaWhatsapp } from 'react-icons/fa';
+import { FaTwitter, FaFacebookF, FaWhatsapp } from 'react-icons/fa';
 
 interface CertificateProps {
   name: string;
@@ -88,13 +88,26 @@ export const Certificate: React.FC<CertificateProps> = ({ name, certificateId, o
     link.click();
   };
 
-  const handleShare = async (platform: 'twitter' | 'facebook' | 'linkedin' | 'instagram' | 'whatsapp') => {
+  const handleShare = async (platform: 'twitter' | 'facebook' | 'whatsapp') => {
     if (!canvasRef.current) return;
 
-    const text = `I've taken the pledge to support a drug-free Kerala! Join me in creating positive change. #StrongerWithoutDrugs #DrugFreeKerala`;
-    const url = window.location.href;
+    const formattedId = formatCertificateId(certificateId);
     
+    // Predefined text message
+    const text = `🌿 Proud to be part of the movement! 🌿
+
+I've taken a pledge to stand strong against drug abuse and contribute to building a healthier, drug-free Kerala. 🕊
+
+Substance abuse impacts not just individuals but entire communities. By choosing to stay informed and aware, we can lead by example and empower others to do the same. Together, we can build a stronger, safer society.
+
+A huge thank you to μLearn and the Group of Technology Companies (GTech) for creating this powerful avenue to raise awareness and inspire collective action. 💚
+
+🆔 My Pledge ID: ${formattedId}
+#StrongerWithoutDrugs #DrugFreeKerala #HealthyLiving #YouthForChange #mulearn #Gtech #SocialImpact #SayNoToDrugs #TogetherWeCan`;
+
+    const url = window.location.href;
     let shareUrl = '';
+
     switch (platform) {
       case 'twitter':
         shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`;
@@ -102,15 +115,9 @@ export const Certificate: React.FC<CertificateProps> = ({ name, certificateId, o
       case 'facebook':
         shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`;
         break;
-      case 'linkedin':
-        shareUrl = `https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(url)}&title=${encodeURIComponent('Drug Free Kerala Certificate')}&summary=${encodeURIComponent(text)}`;
-        break;
       case 'whatsapp':
         shareUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(`${text}\n${url}`)}`;
         break;
-      case 'instagram':
-        alert('To share on Instagram, please download the certificate and share it manually through the Instagram app.');
-        return;
     }
 
     window.open(shareUrl, '_blank', 'width=600,height=400');
@@ -164,30 +171,12 @@ export const Certificate: React.FC<CertificateProps> = ({ name, certificateId, o
           </Button>
           
           <Button
-            onClick={() => handleShare('linkedin')}
-            variant="outline"
-            className="p-3 aspect-square rounded-full border-2 border-[rgba(92,183,105,1)] hover:bg-[rgba(92,183,105,0.1)] transition-colors"
-            title="Share on LinkedIn"
-          >
-            <FaLinkedinIn className="w-5 h-5 text-[#0077B5]" />
-          </Button>
-          
-          <Button
             onClick={() => handleShare('whatsapp')}
             variant="outline"
             className="p-3 aspect-square rounded-full border-2 border-[rgba(92,183,105,1)] hover:bg-[rgba(92,183,105,0.1)] transition-colors"
             title="Share on WhatsApp"
           >
             <FaWhatsapp className="w-5 h-5 text-[#25D366]" />
-          </Button>
-          
-          <Button
-            onClick={() => handleShare('instagram')}
-            variant="outline"
-            className="p-3 aspect-square rounded-full border-2 border-[rgba(92,183,105,1)] hover:bg-[rgba(92,183,105,0.1)] transition-colors"
-            title="Share on Instagram"
-          >
-            <FaInstagram className="w-5 h-5 text-[#E4405F]" />
           </Button>
         </div>
       </div>
