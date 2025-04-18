@@ -1,5 +1,7 @@
 import React from 'react';
 import { Button } from '@/components/ui/button';
+import { Copy } from 'lucide-react';
+import { useToast } from '@/hooks/use-toast';
 
 interface ErrorModalProps {
   name: string;
@@ -14,6 +16,17 @@ export const ErrorModal: React.FC<ErrorModalProps> = ({
   onViewCertificate,
   onClose,
 }) => {
+  const { toast } = useToast();
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(certificateId);
+    toast({
+      title: "Copied!",
+      description: "Certificate ID copied to clipboard",
+      duration: 2000,
+    });
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-70">
       <div className="bg-white rounded-lg w-full max-w-md p-6 shadow-xl">
@@ -43,10 +56,21 @@ export const ErrorModal: React.FC<ErrorModalProps> = ({
           
           <div className="bg-gray-100 p-4 rounded-lg w-full mb-6">
             <p className="text-sm text-gray-500 mb-1">Your Certificate ID:</p>
-            <p className="text-lg font-medium text-[rgba(92,183,105,1)] font-mono">{certificateId}</p>
+            <div className="flex items-center justify-between gap-2">
+              <p className="text-lg font-medium text-[rgba(92,183,105,1)] font-mono">{certificateId}</p>
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={handleCopy}
+                className="h-8 w-8 hover:bg-[rgba(92,183,105,0.1)]"
+                title="Copy to clipboard"
+              >
+                <Copy className="h-4 w-4 text-[rgba(92,183,105,1)]" />
+              </Button>
+            </div>
           </div>
           
-          <div className="flex flex-col sm:flex-row gap-3 w-full">
+          <div className="flex gap-4 w-full">
             <Button 
               variant="outline"
               className="flex-1"

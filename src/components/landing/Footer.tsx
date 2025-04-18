@@ -1,7 +1,8 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
-import { Facebook, Twitter, Instagram, Linkedin, Phone, Mail, MapPin, Copyright } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, Mail, MapPin, Copyright } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa";
 
 export const Footer = ({ onPledgeClick }: { onPledgeClick: () => void }) => {
   return (
@@ -50,7 +51,7 @@ export const Footer = ({ onPledgeClick }: { onPledgeClick: () => void }) => {
               </Button>
               <Button variant="ghost" size="icon" className="p-0 h-[30px] w-[30px] bg-white/10 rounded-full hover:bg-white/20">
                 <a href="https://chat.whatsapp.com/BoA0aibDSqNL60qBRslCww">
-                  <Phone className="h-4 w-4 text-white" />
+                  <FaWhatsapp className="h-4 w-4 text-white" />
                 </a>
               </Button>
             </div>
@@ -115,7 +116,7 @@ export const Footer = ({ onPledgeClick }: { onPledgeClick: () => void }) => {
             
             <div className="flex items-center gap-3 text-[rgba(242,242,242,1)] font-light mt-4">
               <div className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center flex-shrink-0">
-                <Phone className="w-5 h-5 text-white" />
+                <Mail className="w-5 h-5 text-white" />
               </div>
               <a
                 href="tel:+919876543210"

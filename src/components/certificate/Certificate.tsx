@@ -35,7 +35,7 @@ export const Certificate: React.FC<CertificateProps> = ({ name, certificateId, o
         const textCoordinates = [
           {
             x: 550,
-            y: 460,
+            y: 480,
             fontSize: 48,
             color: '#000000',
             maxWidth: 800,

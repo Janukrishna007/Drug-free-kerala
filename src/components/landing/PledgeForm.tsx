@@ -39,7 +39,7 @@ const PledgeItem: React.FC<PledgeItemProps> = ({
             className="absolute opacity-0 w-[27px] h-[27px] cursor-pointer"
             aria-labelledby={`${id}-text`}
           />
-          <div className="w-[27px] h-[27px] rounded-full bg-[#D9D9D9] flex items-center justify-center">
+          <div className={`w-[27px] h-[27px] rounded-full ${checked ? 'bg-[rgba(92,183,105,1)]' : 'bg-[#D9D9D9]'} flex items-center justify-center transition-colors duration-200`}>
             {checked && (
               <svg
                 width="14"
@@ -50,7 +50,7 @@ const PledgeItem: React.FC<PledgeItemProps> = ({
               >
                 <path
                   d="M1 5L5 9L13 1"
-                  stroke="black"
+                  stroke="white"
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
