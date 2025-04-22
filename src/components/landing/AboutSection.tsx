@@ -8,7 +8,7 @@ export const AboutSection = () => {
   const playerContainerRef = useRef<HTMLDivElement>(null);
 
   // YouTube video ID
-  const videoId = "YhhrRVoizIM";
+  const videoId = "hR5dDT7omLM";
   
   // YouTube thumbnail (high quality)
   const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
